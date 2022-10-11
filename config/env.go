@@ -1,4 +1,4 @@
-package core
+package config
 
 import (
 	"log"
@@ -15,7 +15,7 @@ var LogSetting = &Log{}
 var cfg *ini.File
 
 // Setup initialize the configuration instance
-func Env() {
+func env() {
 	var err error
 	cfg, err = ini.Load(".env")
 	if err != nil {
