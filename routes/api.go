@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// register all api router
 func Register(router *gin.Engine) *gin.Engine {
 	router.GET("/", func(c *gin.Context) {
 		c.String(http.StatusOK, "welcome !")

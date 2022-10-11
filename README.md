@@ -7,6 +7,7 @@ cp .env.example .env
 ```
 ## ref
 - https://github.com/eddycjy/go-gin-example
+- https://github.com/haubar/GoMVC
 
 ## todo list
 1. env struct
