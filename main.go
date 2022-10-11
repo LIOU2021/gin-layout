@@ -2,8 +2,7 @@ package main
 
 import (
 	"github.com/LIOU2021/gin-layout/config"
-	"github.com/LIOU2021/gin-layout/middleware"
-	"github.com/LIOU2021/gin-layout/routes"
+	"github.com/LIOU2021/gin-layout/core"
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,9 +12,6 @@ func init() {
 
 func main() {
 	router := gin.New()
-
-	middleware.Register(router)
-	routes.Register(router)
-
+	core.Register(router)
 	router.Run(":8080")
 }
