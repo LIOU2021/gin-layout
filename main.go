@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 	"io"
-	"net/http"
 	"os"
 	"time"
 
+	"github.com/LIOU2021/gin-layout/routes"
 	"github.com/gin-gonic/gin"
 )
 
@@ -34,9 +34,7 @@ func main() {
 
 	router.Use(gin.Recovery())
 
-	router.GET("/ping", func(c *gin.Context) {
-		c.String(http.StatusOK, "pong")
-	})
+	routes.Register(router)
 
 	router.Run(":8080")
 }
@@ -45,7 +43,7 @@ func openFile(fileName string) *os.File {
 	_, error := os.Stat(fileName)
 
 	if os.IsNotExist(error) {
-		f, _ := os.Create("gin.log")
+		f, _ := os.Create(fileName)
 		return f
 	} else {
 		f, _ := os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
