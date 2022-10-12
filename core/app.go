@@ -2,6 +2,8 @@ package core
 
 import (
 	"fmt"
+	"net/http"
+	"time"
 
 	"github.com/LIOU2021/gin-layout/env"
 	"github.com/gin-gonic/gin"
@@ -20,10 +22,24 @@ func appInfo() {
 func Run() {
 	iniEnv()
 
+	gin.SetMode(env.ServerSetting.RunMode)
+
 	router := gin.New()
+
 	register(router)
+
+	readTimeout := env.ServerSetting.ReadTimeout
+	writeTimeout := env.ServerSetting.WriteTimeout
+
+	s := &http.Server{
+		Addr:           endPoint,
+		Handler:        router,
+		ReadTimeout:    readTimeout * time.Second,
+		WriteTimeout:   writeTimeout * time.Second,
+		MaxHeaderBytes: 1 << 20,
+	}
 
 	appInfo()
 
-	router.Run(endPoint)
+	s.ListenAndServe()
 }
