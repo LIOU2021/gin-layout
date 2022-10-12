@@ -3,6 +3,7 @@ package config
 import (
 	"log"
 
+	"github.com/LIOU2021/gin-layout/helpers"
 	"github.com/go-ini/ini"
 )
 
@@ -14,6 +15,8 @@ var LogSetting = &Log{}
 
 var cfg *ini.File
 
+var EnvStructSlice []interface{}
+
 // Setup initialize the configuration instance
 func env() {
 	var err error
@@ -22,7 +25,9 @@ func env() {
 		log.Fatalf("setting.Setup, fail to parse '.env': %v", err)
 	}
 
-	mapTo("log", LogSetting)
+	EnvStructSlice = append(EnvStructSlice, LogSetting)
+	foreachMapTo(EnvStructSlice)
+	// mapTo("log", LogSetting)
 }
 
 // mapTo map section
@@ -30,5 +35,11 @@ func mapTo(section string, v interface{}) {
 	err := cfg.Section(section).MapTo(v)
 	if err != nil {
 		log.Fatalf("Cfg.MapTo %s err: %v", section, err)
+	}
+}
+
+func foreachMapTo(v []interface{}) {
+	for _, element := range v {
+		mapTo(helpers.GetType(element), element)
 	}
 }
