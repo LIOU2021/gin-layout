@@ -8,4 +8,5 @@ var EnvStructSlice []interface{}
 
 func init() {
 	EnvStructSlice = append(EnvStructSlice, env.LogSetting)
+	EnvStructSlice = append(EnvStructSlice, env.AppSetting)
 }

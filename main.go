@@ -5,6 +5,7 @@ import (
 
 	"github.com/LIOU2021/gin-layout/config"
 	"github.com/LIOU2021/gin-layout/core"
+	"github.com/LIOU2021/gin-layout/env"
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,6 +16,8 @@ func init() {
 func main() {
 	router := gin.New()
 	core.Register(router)
-	fmt.Println("run http://127.0.0.1:8080")
-	router.Run(":8080")
+
+	endPoint := env.AppSetting.HOST + ":" + env.AppSetting.PORT
+	fmt.Println("run " + endPoint)
+	router.Run(endPoint)
 }
