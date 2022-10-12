@@ -2,6 +2,6 @@ package config
 
 // register all config setting
 func Kernel() {
-	env()
+	envRegister()
 	systemLog()
 }

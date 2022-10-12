@@ -3,31 +3,31 @@ package config
 import (
 	"log"
 
+	"github.com/LIOU2021/gin-layout/config/env"
 	"github.com/LIOU2021/gin-layout/helpers"
 	"github.com/go-ini/ini"
 )
 
-type Log struct {
-	FileName string
-}
+// type Log struct {
+// 	FileName string
+// }
 
-var LogSetting = &Log{}
+// var LogSetting = &Log{}
 
 var cfg *ini.File
 
 var EnvStructSlice []interface{}
 
 // Setup initialize the configuration instance
-func env() {
+func envRegister() {
 	var err error
 	cfg, err = ini.Load(".env")
 	if err != nil {
 		log.Fatalf("setting.Setup, fail to parse '.env': %v", err)
 	}
 
-	EnvStructSlice = append(EnvStructSlice, LogSetting)
+	EnvStructSlice = append(EnvStructSlice, env.LogSetting)
 	foreachMapTo(EnvStructSlice)
-	// mapTo("log", LogSetting)
 }
 
 // mapTo map section
