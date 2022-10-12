@@ -21,7 +21,7 @@ func Run() {
 	iniEnv()
 
 	router := gin.New()
-	Register(router)
+	register(router)
 
 	appInfo()
 

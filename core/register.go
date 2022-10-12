@@ -7,7 +7,7 @@ import (
 )
 
 // register gin setting
-func Register(router *gin.Engine) *gin.Engine {
+func register(router *gin.Engine) *gin.Engine {
 
 	middleware.Register(router)
 	routes.Register(router)
