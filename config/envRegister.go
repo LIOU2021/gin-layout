@@ -9,17 +9,15 @@ import (
 
 var cfg *ini.File
 
-// var EnvStructSlice []interface{}
-
 // Setup initialize the configuration instance
 func envRegister() {
 	var err error
 	cfg, err = ini.Load(".env")
+
 	if err != nil {
 		log.Fatalf("setting.Setup, fail to parse '.env': %v", err)
 	}
 
-	// EnvStructSlice = append(EnvStructSlice, env.LogSetting)
 	foreachMapTo(EnvStructSlice)
 }
 
