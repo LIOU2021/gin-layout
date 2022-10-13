@@ -1,15 +1,21 @@
 package helpers
 
-import "os"
+import (
+	"log"
+	"os"
+)
 
 func OpenFile(fileName string) *os.File {
-	_, error := os.Stat(fileName)
+	fileExists := FileExists(fileName)
 
-	if os.IsNotExist(error) {
-		f, _ := os.Create(fileName)
+	if fileExists {
+		f, _ := os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 		return f
 	} else {
-		f, _ := os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		f, err := os.Create(fileName)
+		if err != nil {
+			log.Fatal(err)
+		}
 		return f
 	}
 }

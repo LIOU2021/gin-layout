@@ -5,7 +5,9 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/LIOU2021/gin-layout/config"
 	"github.com/LIOU2021/gin-layout/env"
+	"github.com/LIOU2021/gin-layout/helpers"
 	"github.com/gin-gonic/gin"
 	timeout "github.com/vearne/gin-timeout"
 )
@@ -35,6 +37,14 @@ func Register(router *gin.Engine) *gin.Engine {
 		timeout.WithCallBack(func(r *http.Request) {
 			fmt.Println("timeout happen, url:", r.URL.String())
 		}))) // optional
+
+	router.Use(func(c *gin.Context) {
+		logName := config.LogName()
+		fileExists := helpers.FileExists(logName)
+		if !fileExists {
+			config.CreateLogFile(logName)
+		}
+	})
 
 	return router
 }

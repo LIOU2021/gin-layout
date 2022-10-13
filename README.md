@@ -1,5 +1,8 @@
 # gin layout
 
+## where is log ?
+- ./logs
+
 # prepare
 1. create your env setting
 ```
@@ -10,6 +13,7 @@ cp .env.example .env
 - https://github.com/haubar/GoMVC
 
 ## todo list
-- change log file, like to 20221011_gin.log 20221012_gin.log and store at ./storage
+- test log file, like to 20221011_gin.log 20221012_gin.log and store at ./storage. use different api at 23:58 ~ 00:00 test
+- create global middleware and register
 - create controller
 - create model
