@@ -3,6 +3,7 @@ package core
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/LIOU2021/gin-layout/env"
@@ -15,12 +16,17 @@ func iniEnv() {
 	endPoint = env.AppSetting.HOST + ":" + env.AppSetting.PORT
 }
 
+func setTimeZone() {
+	os.Setenv("TZ", env.AppSetting.TimeZone)
+}
+
 func appInfo() {
 	fmt.Println("run " + endPoint)
 }
 
 func Run() {
 	iniEnv()
+	setTimeZone()
 
 	gin.SetMode(env.ServerSetting.RunMode)
 

@@ -1,8 +1,9 @@
 package env
 
 type App struct {
-	HOST string
-	PORT string
+	HOST     string
+	PORT     string
+	TimeZone string
 }
 
 var AppSetting = &App{}
