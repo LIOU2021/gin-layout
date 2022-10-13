@@ -10,6 +10,6 @@ cp .env.example .env
 - https://github.com/haubar/GoMVC
 
 ## todo list
-- log file loss http status code
-- change log file, like to 20221011_gin.log 20221012_gin.log
-- create api timeout and stop and response, middleware, change http status code when timeout 
+- change log file, like to 20221011_gin.log 20221012_gin.log and store at ./storage
+- create controller
+- create model
