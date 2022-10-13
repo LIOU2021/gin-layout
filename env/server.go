@@ -7,6 +7,7 @@ type Server struct {
 	HttpPort     int
 	ReadTimeout  time.Duration
 	WriteTimeout time.Duration
+	ApiTimeout   time.Duration
 }
 
 var ServerSetting = &Server{}

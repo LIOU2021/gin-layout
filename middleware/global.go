@@ -2,9 +2,12 @@ package middleware
 
 import (
 	"fmt"
+	"net/http"
 	"time"
 
+	"github.com/LIOU2021/gin-layout/env"
 	"github.com/gin-gonic/gin"
+	timeout "github.com/vearne/gin-timeout"
 )
 
 // register global middleware
@@ -24,6 +27,14 @@ func Register(router *gin.Engine) *gin.Engine {
 	}))
 
 	router.Use(gin.Recovery())
+
+	router.Use(timeout.Timeout(
+		timeout.WithTimeout(env.ServerSetting.ApiTimeout*time.Second),
+		timeout.WithErrorHttpCode(http.StatusRequestTimeout),                   // optional
+		timeout.WithDefaultMsg(`{"code": 408, "msg":"http: Handler timeout"}`), // optional
+		timeout.WithCallBack(func(r *http.Request) {
+			fmt.Println("timeout happen, url:", r.URL.String())
+		}))) // optional
 
 	return router
 }
