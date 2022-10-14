@@ -5,9 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/LIOU2021/gin-layout/config"
 	"github.com/LIOU2021/gin-layout/env"
-	"github.com/LIOU2021/gin-layout/helpers"
 	"github.com/gin-gonic/gin"
 	timeout "github.com/vearne/gin-timeout"
 )
@@ -15,7 +13,7 @@ import (
 // register global middleware
 func Register(router *gin.Engine) *gin.Engine {
 
-	router.Use(systemLogFormatMiddleware(), systemLogChange(), gin.Recovery(), timeoutMiddleware())
+	router.Use(systemLogFormatMiddleware(), gin.Recovery(), timeoutMiddleware())
 
 	return router
 }
@@ -34,16 +32,6 @@ func systemLogFormatMiddleware() gin.HandlerFunc {
 			param.ErrorMessage,
 		)
 	})
-}
-
-func systemLogChange() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		logName := config.LogName()
-		fileExists := helpers.FileExists(logName)
-		if !fileExists {
-			config.CreateLogFile(logName)
-		}
-	}
 }
 
 func timeoutMiddleware() gin.HandlerFunc {
