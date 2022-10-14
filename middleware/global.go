@@ -14,7 +14,14 @@ import (
 
 // register global middleware
 func Register(router *gin.Engine) *gin.Engine {
-	router.Use(gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
+
+	router.Use(systemLogFormatMiddleware(), systemLogChange(), gin.Recovery(), timeoutMiddleware())
+
+	return router
+}
+
+func systemLogFormatMiddleware() gin.HandlerFunc {
+	return gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
 		return fmt.Sprintf("%s - [%s] \"%s %s %s %d %s \"%s\" %s\"\n",
 			param.ClientIP,
 			param.TimeStamp.Format(time.RFC1123),
@@ -26,25 +33,25 @@ func Register(router *gin.Engine) *gin.Engine {
 			param.Request.UserAgent(),
 			param.ErrorMessage,
 		)
-	}))
+	})
+}
 
-	router.Use(gin.Recovery())
-
-	router.Use(timeout.Timeout(
-		timeout.WithTimeout(env.ServerSetting.ApiTimeout*time.Second),
-		timeout.WithErrorHttpCode(http.StatusRequestTimeout),                   // optional
-		timeout.WithDefaultMsg(`{"code": 408, "msg":"http: Handler timeout"}`), // optional
-		timeout.WithCallBack(func(r *http.Request) {
-			fmt.Println("timeout happen, url:", r.URL.String())
-		}))) // optional
-
-	router.Use(func(c *gin.Context) {
+func systemLogChange() gin.HandlerFunc {
+	return func(c *gin.Context) {
 		logName := config.LogName()
 		fileExists := helpers.FileExists(logName)
 		if !fileExists {
 			config.CreateLogFile(logName)
 		}
-	})
+	}
+}
 
-	return router
+func timeoutMiddleware() gin.HandlerFunc {
+	return timeout.Timeout(
+		timeout.WithTimeout(env.ServerSetting.ApiTimeout*time.Second),
+		timeout.WithErrorHttpCode(http.StatusRequestTimeout),                   // optional
+		timeout.WithDefaultMsg(`{"code": 408, "msg":"http: Handler timeout"}`), // optional
+		timeout.WithCallBack(func(r *http.Request) {
+			fmt.Println("timeout happen, url:", r.URL.String())
+		}))
 }
