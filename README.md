@@ -13,5 +13,4 @@ cp .env.example .env
 - https://github.com/haubar/GoMVC
 
 ## todo list
-- create controller
 - create model
