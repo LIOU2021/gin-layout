@@ -13,6 +13,5 @@ cp .env.example .env
 - https://github.com/haubar/GoMVC
 
 ## todo list
-- create global middleware and register
 - create controller
 - create model
