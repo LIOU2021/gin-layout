@@ -5,3 +5,7 @@ type Log struct {
 }
 
 var LogSetting = &Log{}
+
+func init() {
+	EnvSlice = append(EnvSlice, LogSetting)
+}

@@ -8,3 +8,7 @@ type App struct {
 }
 
 var AppSetting = &App{}
+
+func init() {
+	EnvSlice = append(EnvSlice, AppSetting)
+}

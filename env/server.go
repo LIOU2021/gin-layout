@@ -11,3 +11,7 @@ type Server struct {
 }
 
 var ServerSetting = &Server{}
+
+func init() {
+	EnvSlice = append(EnvSlice, ServerSetting)
+}

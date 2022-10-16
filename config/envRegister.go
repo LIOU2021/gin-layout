@@ -3,6 +3,7 @@ package config
 import (
 	"log"
 
+	"github.com/LIOU2021/gin-layout/env"
 	"github.com/LIOU2021/gin-layout/helpers"
 	"github.com/go-ini/ini"
 )
@@ -18,7 +19,7 @@ func envRegister() {
 		log.Fatalf("setting.Setup, fail to parse '.env': %v", err)
 	}
 
-	foreachMapTo(EnvStructSlice)
+	foreachMapTo(env.EnvSlice)
 }
 
 // mapTo map section
