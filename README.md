@@ -8,7 +8,14 @@
 ```
 cp .env.example .env
 ```
+# start
+```
+#1.
+make build
 
+#2.
+gin-layout
+```
 # cli
 - https://github.com/LIOU2021/gin-layout-cli
 ## ref
@@ -18,4 +25,4 @@ cp .env.example .env
 ## todo list
 - create model
 - create log global method
-- create orm
+- create orm https://ithelp.ithome.com.tw/articles/10245308
