@@ -34,9 +34,14 @@ func Test_Welcome(t *testing.T) {
 	assert.Contains(t, w.Body.String(), "welcome !")
 }
 
-func Test_Welcome2(t *testing.T) {
-	w := api("GET", "/", nil)
+func Test_CsrfToken(t *testing.T) {
+	w := api("GET", "/csrf-token", nil)
 
 	assert.Equal(t, http.StatusOK, w.Code)
-	assert.Contains(t, w.Body.String(), "welcome !")
+
+	assert.Contains(t, w.Body.String(), "success")
+
+	token := w.Header().Get("csrf-token")
+
+	assert.NotEmpty(t, token)
 }

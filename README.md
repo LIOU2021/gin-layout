@@ -29,7 +29,7 @@ gin-layout
 - go test -cover -v
 
 ## todo list
-- TDD
+- change test structure to sub directors
 - create model
 - create log global method
 - create orm https://ithelp.ithome.com.tw/articles/10245308
