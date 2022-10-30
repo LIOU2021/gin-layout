@@ -25,7 +25,7 @@ gin-layout
 
 ## test
 - go test -v
-- go test -run Test_Welcome2 -v
+- go test -run Test_CsrfToken -v
 - go test -cover -v
 
 ## todo list
