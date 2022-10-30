@@ -33,3 +33,10 @@ func Test_Welcome(t *testing.T) {
 	assert.Equal(t, http.StatusOK, w.Code)
 	assert.Contains(t, w.Body.String(), "welcome !")
 }
+
+func Test_Welcome2(t *testing.T) {
+	w := api("GET", "/", nil)
+
+	assert.Equal(t, http.StatusOK, w.Code)
+	assert.Contains(t, w.Body.String(), "welcome !")
+}

@@ -25,6 +25,7 @@ gin-layout
 
 ## test
 - go test -v
+- go test -run Test_Welcome2 -v
 
 ## todo list
 - TDD
