@@ -18,7 +18,7 @@ func setupRouter(method string, url string, body io.Reader) *httptest.ResponseRe
 	return w
 }
 
-func Test_Router(t *testing.T) {
+func Test_Welcome(t *testing.T) {
 	w := setupRouter("GET", "/", nil)
 
 	assert.Equal(t, http.StatusOK, w.Code)
