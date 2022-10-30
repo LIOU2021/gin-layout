@@ -18,11 +18,16 @@ gin-layout
 ```
 # cli
 - https://github.com/LIOU2021/gin-layout-cli
+
 ## ref
 - https://github.com/eddycjy/go-gin-example
 - https://github.com/haubar/GoMVC
 
+## test
+- go test -v
+
 ## todo list
+- TDD
 - create model
 - create log global method
 - create orm https://ithelp.ithome.com.tw/articles/10245308

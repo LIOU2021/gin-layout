@@ -24,7 +24,7 @@ func appInfo() {
 	fmt.Println("run " + endPoint)
 }
 
-func Run() {
+func SetupRouter() *gin.Engine {
 	iniEnv()
 	setTimeZone()
 
@@ -34,6 +34,10 @@ func Run() {
 
 	register(router)
 
+	return router
+}
+
+func ListenAndServe(router *gin.Engine) {
 	readTimeout := env.ServerSetting.ReadTimeout
 	writeTimeout := env.ServerSetting.WriteTimeout
 
