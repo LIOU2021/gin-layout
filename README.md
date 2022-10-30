@@ -33,3 +33,4 @@ gin-layout
 - create model
 - create log global method
 - create orm https://ithelp.ithome.com.tw/articles/10245308
+- create redis https://github.com/go-redis/redis
