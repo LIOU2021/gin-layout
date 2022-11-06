@@ -30,6 +30,9 @@ gin-layout
 - go test -run Test_CsrfToken -v
 - go test -cover -v
 
+## docker deploy
+- https://github.com/LIOU2021/docker-go
+
 ## todo list
 - create model
 - create orm https://ithelp.ithome.com.tw/articles/10245308
