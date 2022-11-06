@@ -21,6 +21,7 @@ func setConn(obj *gorm.DB) {
 	connect = obj
 }
 
+// init db connection
 func InitDB() {
 	// 組合sql連線字串
 	addr := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True", env.DbSetting.UserName, env.DbSetting.Password, env.DbSetting.Addr, env.DbSetting.Port, env.DbSetting.Database)
@@ -44,4 +45,15 @@ func InitDB() {
 	db.SetMaxIdleConns(env.DbSetting.MaxIdleConns)
 	db.SetMaxOpenConns(env.DbSetting.MaxOpenConns)
 
+}
+
+// exec migrate
+func Migrate(obj *gorm.DB, model interface{}) {
+	migrator := obj.Migrator()
+	has := migrator.HasTable(model)
+	if !has {
+		fmt.Println("table not exist")
+		//創表
+		obj.AutoMigrate(model)
+	}
 }

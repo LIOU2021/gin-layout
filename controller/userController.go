@@ -20,25 +20,14 @@ func (controller *userController) Index(c *gin.Context) {
 
 func (controller *userController) Create(c *gin.Context) {
 	user := model.User{UserName: "tester", Password: "12333"}
-	db := db.Conn()
+	conn := db.Conn()
+	db.Migrate(conn, &model.User{})
 
-	// db.AutoMigrate(&model.User{})
-
-	// 判斷有沒有table存在
-	migrator := db.Migrator()
-	has := migrator.HasTable(&model.User{})
-	if !has {
-
-		fmt.Println("table not exist")
-		//創表
-		db.AutoMigrate(&model.User{})
-	}
-
-	result := db.Create(&user)
+	result := conn.Create(&user)
 
 	if result.Error != nil {
 		fmt.Println("Create failt")
 	}
-	// c.JSON(http.StatusOK, user)
-	c.JSON(http.StatusOK, "create success !")
+
+	c.JSON(http.StatusOK, user)
 }
