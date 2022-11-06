@@ -35,6 +35,6 @@ gin-layout
 - https://github.com/LIOU2021/docker-go
 
 ## todo list
-- create model
+- create model(update/delete)
 - create orm https://ithelp.ithome.com.tw/articles/10245308
 - create redis https://github.com/go-redis/redis
