@@ -24,6 +24,7 @@ gin-layout
 ## ref
 - https://github.com/eddycjy/go-gin-example
 - https://github.com/haubar/GoMVC
+- https://learnku.com/articles/23548/gingormrouter-quickly-build-crud-restful-api-interface
 
 ## test
 - go test -v

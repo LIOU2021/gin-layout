@@ -23,3 +23,15 @@ func (user *User) Users() (users []User, err error) {
 	}
 	return
 }
+
+// 新增
+func (user User) Insert() (id int64, err error) {
+
+	result := db.Conn().Create(&user)
+	id = user.ID
+	if result.Error != nil {
+		err = result.Error
+		return
+	}
+	return
+}
