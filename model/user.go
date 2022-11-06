@@ -16,6 +16,11 @@ type User struct {
 
 // var Users []User
 
+// func init() {
+// 	test := User{UserName: "hello", Password: "123456"}
+// 	db.Migrate(db.Conn(), &test)
+// }
+
 // 列表
 func (user *User) Users() (users []User, err error) {
 	if err = db.Conn().Find(&users).Error; err != nil {

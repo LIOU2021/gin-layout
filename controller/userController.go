@@ -3,6 +3,7 @@ package controller
 import (
 	"net/http"
 
+	"github.com/LIOU2021/gin-layout/db"
 	"github.com/LIOU2021/gin-layout/model"
 	"github.com/gin-gonic/gin"
 )
@@ -12,6 +13,8 @@ type userController struct{}
 var UserController = &userController{}
 
 func (controller *userController) Index(c *gin.Context) {
+	db.Migrate(db.Conn(), &model.User{})
+
 	var user model.User
 	result, err := user.Users()
 
@@ -28,6 +31,7 @@ func (controller *userController) Index(c *gin.Context) {
 }
 
 func (controller *userController) Create(c *gin.Context) {
+	db.Migrate(db.Conn(), &model.User{})
 
 	user := model.User{UserName: "hello", Password: "123456"}
 	_, err := user.Insert()
