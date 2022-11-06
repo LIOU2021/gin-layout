@@ -14,8 +14,21 @@ type userController struct{}
 var UserController = &userController{}
 
 func (controller *userController) Index(c *gin.Context) {
-	//檢索users全部資料
-	c.JSON(http.StatusOK, "userController @Index !")
+	var user model.User
+	result, err := user.Users()
+
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code":    404,
+			"message": "data empty",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"code": 200,
+		"data": result,
+	})
 }
 
 func (controller *userController) Create(c *gin.Context) {

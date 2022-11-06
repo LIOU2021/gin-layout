@@ -2,6 +2,8 @@ package model
 
 import (
 	"time"
+
+	"github.com/LIOU2021/gin-layout/db"
 )
 
 type User struct {
@@ -10,4 +12,14 @@ type User struct {
 	Password  string     `gorm:"type:varchar(100) NOT NULL;" json:"password,omitempty"`
 	CreatedAt *time.Time `gorm:"type:timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP" json:"created_at,omitempty"`
 	UpdatedAt *time.Time `gorm:"type:timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP" json:"updated_at,omitempty"`
+}
+
+// var Users []User
+
+// 列表
+func (user *User) Users() (users []User, err error) {
+	if err = db.Conn().Find(&users).Error; err != nil {
+		return
+	}
+	return
 }
