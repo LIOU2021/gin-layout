@@ -27,6 +27,8 @@ func (controller *userController) Create(c *gin.Context) {
 
 	if result.Error != nil {
 		fmt.Println("Create failt")
+		c.JSON(http.StatusBadRequest, "Create failt")
+		return
 	}
 
 	c.JSON(http.StatusOK, user)
