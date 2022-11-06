@@ -5,6 +5,8 @@ import (
 	"log"
 	"time"
 
+	"net/url"
+
 	"github.com/LIOU2021/gin-layout/env"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -24,7 +26,7 @@ func setConn(obj *gorm.DB) {
 // init db connection
 func InitDB() {
 	// 組合sql連線字串
-	addr := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True", env.DbSetting.UserName, env.DbSetting.Password, env.DbSetting.Addr, env.DbSetting.Port, env.DbSetting.Database)
+	addr := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=%s", env.DbSetting.UserName, env.DbSetting.Password, env.DbSetting.Addr, env.DbSetting.Port, env.DbSetting.Database, url.QueryEscape(env.AppSetting.TimeZone))
 	// 連接MySQL
 	conn, err := gorm.Open(mysql.Open(addr), &gorm.Config{})
 

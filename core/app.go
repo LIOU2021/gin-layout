@@ -19,6 +19,7 @@ func iniEnv() {
 
 func setTimeZone() {
 	os.Setenv("TZ", env.AppSetting.TimeZone)
+	time.LoadLocation(env.AppSetting.TimeZone)
 }
 
 func appInfo() {
