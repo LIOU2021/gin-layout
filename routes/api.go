@@ -13,5 +13,9 @@ func Register(router *gin.Engine) *gin.Engine {
 
 	router.GET("/", controller.IndexController.Index)
 
+	users := router.Group("users")
+	users.POST("/", controller.UserController.Create)
+	users.GET("/", controller.UserController.Index)
+
 	return router
 }
