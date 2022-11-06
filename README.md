@@ -1,7 +1,9 @@
 # gin layout
 
-## where is log ?
-- ./logs
+## where is system log ?
+- ./logs/gin.log
+## where is debug log?
+- ./logs/debug.log
 
 # prepare
 1. create your env setting
@@ -29,8 +31,6 @@ gin-layout
 - go test -cover -v
 
 ## todo list
-- change test structure to sub directors
 - create model
-- create log global method
 - create orm https://ithelp.ithome.com.tw/articles/10245308
 - create redis https://github.com/go-redis/redis
